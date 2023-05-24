@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Food Ordering System</title>
+</head>
+<body>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center"> Add New User </h1>
+                <div>
+                    <p th:text="${message}" style="color: #318043"></p>
+                    <p th:text="${dangerMessage}" style="color: red"></p>
+                </div>
+                <div class="card-body">
+
+                    <!--user form started....-->
+                    <form th:action="@{/user/save}" th:object="${userDTO}" method="post"
+                          enctype="multipart/form-data" onsubmit="return userFormValidator()">
+
+                        <!--user name div....-->
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">User's Name</label>
+                            <input
+                                    type="text"
+                                    id="userName"
+                                    name="name"
+                                    th:field="*{name}"
+                                    th:value="${userDTO.name}"
+                                    th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackUserName"
+                            >
+                            <div
+                                    th:each="e : ${#fields.errors('name')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackUserName"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--user email div....-->
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">User's Email</label>
+                            <input
+                                    type="email"
+                                    id="userEmail"
+                                    name="email"
+                                    th:field="*{email}"
+                                    th:value="${userDTO.email}"
+                                    th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackUserEmail"
+                            >
+                            <span id="emailMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('email')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackUserEmail"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--user contact number div....-->
+                        <div class="mb-3">
+                            <label for="userContact" class="form-label">User Contact Number</label>
+                            <input
+                                    type="text"
+                                    id="userContact"
+                                    name="contact"
+                                    th:field="*{contact}"
+                                    th:value="${userDTO.contact}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="emailHelp"
+                            >
+                            <span id="contactMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('contact')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackUserContact"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--user age div....-->
+                        <div class="mb-3">
+                            <label for="userAge" class="form-label">User Age</label>
+                            <input
+                                    type="text"
+                                    id="userAge"
+                                    name="contact"
+                                    th:field="*{age}"
+                                    th:value="${userDTO.age}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="emailHelp"
+                            >
+                            <span id="ageMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('contact')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackUserAge"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--user address div....-->
+                        <div class="mb-3">
+                            <label for="userAddress" class="form-label">User Address</label>
+                            <input
+                                    type="text"
+                                    id="userAddress"
+                                    name="contact"
+                                    th:field="*{address}"
+                                    th:value="${userDTO.address}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="emailHelp"
+                            >
+                            <span id="ageAddress" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('address')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackUserAddress"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!-- Food Delivery System image div....-->
+                        <div class="mb-3">
+                            <label for="userImage" class="form-label">User's Image</label>
+                            <input
+                                    type="file"
+                                    id="userImage"
+                                    name="userImage"
+                                    accept="image/*"
+                                    th:value="${userDTO.image}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="emailHelp">
+                        </div>
+
+                        <!--user password div....-->
+                        <div class="mb-3">
+                            <label for="userPassword" class="form-label">User Password</label>
+                            <input
+                                    type="password"
+                                    id="userPassword"
+                                    class="form-control"
+                                    th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                    aria-describedby="validationServer03FeedbackLibrarianPassword"
+                            >
+                            <span id="passwordMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('password')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackLibrarianPassword"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--user confirm password div....-->
+                        <div class="mb-3">
+                            <label for="userConfirmPassword" class="form-label">User Confirm Password</label>
+                            <input
+                                    type="password"
+                                    id="userConfirmPassword"
+                                    name="password"
+                                    th:field="*{password}"
+                                    th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackUseerConfirmPassword"
+                            >
+                            <span id="confirmPasswordMessage" style="color: red"></span>
+                            <div
+                                    th:each="e : ${#fields.errors('password')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackLibrarianConfirmPassword"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--user reset & submit div....-->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                    <!--user form started....-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

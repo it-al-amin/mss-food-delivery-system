@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Food Ordering System</title>
+</head>
+<body>
+
+<section>
+
+    <div class="container">
+        <div class="row row-cols-3">
+            <div th:if="${userDTOS.isEmpty()}">
+                <td colspan="3"> No User Available Now!!</td>
+            </div>
+            <div th:each="userDTO : ${userDTOS}">
+                <div class="card" style="width: 18rem; height: 30rem;">
+                    <img th:src="@{${'/image/' + userDTO.getImage()}}"
+                         height="250" width="150"
+                         class="card-img-top" alt="Not Available Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${'Name: ' + userDTO.name}"></h5>
+                        <p class="card-text" th:text="${'Contact: ' + userDTO.contact}"></p>
+                        <p class="card-text" th:text="${'Email: ' + userDTO.email}"></p>
+                        <a th:href="@{${'/user/get/' + userDTO.id}}" class="btn btn-success">Details</a>
+                        <a th:href="@{${'/blog/get/user/' + userDTO.id}}" class="btn btn-primary">All Orders</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <br><br>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

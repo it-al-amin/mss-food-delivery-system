@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Food Ordering System</title>
+</head>
+<body>
+
+<section>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center"> Edit Food </h1>
+                <div class="card-body">
+                    <!--alumni form started....-->
+                    <form th:action="@{${'/food/update/' + foodDTO.id}}" th:object="${foodDTO}" method="post"
+                          enctype="multipart/form-data" onsubmit="return alumniFormValidator()">
+
+                        <!--food title div....-->
+                        <div class="mb-3">
+                            <label for="foodName" class="form-label">Food's Name</label>
+                            <input
+                                    type="text"
+                                    id="foodName"
+                                    name="name"
+                                    th:field="*{name}"
+                                    th:value="${foodDTO.name}"
+                                    th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackAlumniName"
+                            >
+                            <div
+                                    th:each="e : ${#fields.errors('name')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackAlumniName"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--food title div....-->
+                        <div class="mb-3">
+                            <label for="foodPrice" class="form-label">Food's Price</label>
+                            <input
+                                    type="number"
+                                    id="foodPrice"
+                                    name="price"
+                                    th:field="*{price}"
+                                    th:value="${foodDTO.price}"
+                                    th:classappend="${#fields.hasErrors('price') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    aria-describedby="validationServer03FeedbackAlumniName"
+                            >
+                            <div
+                                    th:each="e : ${#fields.errors('name')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackAlumniPrice"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!--food title div....-->
+                        <div class="mb-3">
+                            <label for="foodDescription" class="form-label">Food's Description</label>
+                            <textarea
+                                    id="foodDescription"
+                                    name="name"
+                                    th:field="*{description}"
+                                    th:value="${foodDTO.description}"
+                                    th:classappend="${#fields.hasErrors('description') ? 'is-invalid' : ''}"
+                                    required="required"
+                                    class="form-control"
+                                    rows="5"
+                                    aria-describedby="validationServer03FeedbackFoodDescription"
+                            ></textarea>
+                            <div
+                                    th:each="e : ${#fields.errors('description')}"
+                                    th:text="${e}"
+                                    id="validationServer03FeedbackFoodDescription"
+                                    class="invalid-feedback">
+                            </div>
+                        </div>
+
+                        <!-- Food Delivery System image div....-->
+                        <!--                        <div class="mb-3">-->
+                        <!--                            <label for="foodImage" class="form-label">Food's Image</label>-->
+                        <!--                            <input-->
+                        <!--                                    type="file"-->
+                        <!--                                    id="foodImage"-->
+                        <!--                                    name="foodImage"-->
+                        <!--                                    accept="image/*"-->
+                        <!--                                    th:value="${foodDTO.image}"-->
+                        <!--                                    class="form-control"-->
+                        <!--                                    aria-describedby="emailHelp">-->
+                        <!--                        </div>-->
+
+                        <!--alumni reset & submit div....-->
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Food Ordering System</title>
+</head>
+<body>
+
+<section>
+
+
+    <div class="container">
+        <div class="container col-md-5" style="text-align: center">
+
+            <h1 style="text-align: center">Food Details</h1>
+            <div>
+                <p th:text="${message}" style="color: #318043"></p>
+            </div>
+            <div class="card" style="width: 40rem; text-align: center">
+                <img th:src="@{${'/image/' + foodDTO.image}}"
+                     class="single-card-img-top profile-image" alt="Not Available Image">
+                <div class="card-body">
+                    <div style="text-align: left">
+                        <h5 class="card-title" th:text="${'Food Name: ' + foodDTO.name}">
+
+                        </h5>
+                        <p class="card-title" th:text="${'User Price: ' + foodDTO.price}"></p>
+                        <p class="card-title" th:text="${'User Description: ' + foodDTO.description}"></p>
+                        <div class="row text-center" style="text-align: center">
+                            <div class="col-md-3">
+                                <a th:href="@{${'/food/get/' + foodDTO.id}}"
+                                   class="btn flatiron-user btn-primary"
+                                   data-toggle="modal">
+                                    Buy Food
+                                </a>
+                               <!-- <a th:href="@{${'/food/edit/' + foodDTO.id}}"
+                                   th:if="${name != null}"
+                                   class="btn flatiron-user btn-success"
+                                   data-toggle="modal">
+                                    Update Food
+                                </a>  -->
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Food Ordering System</title>
+</head>
+<body>
+
+<section>
+
+
+    <div class="container">
+        <div class="container col-md-5" style="text-align: center">
+
+            <h1 style="text-align: center">Authority Details</h1>
+
+            <div class="card" style="width: 40rem; text-align: center">
+                <img th:src="@{${'/image/' + userDTO.image}}"
+                     class="single-card-img-top profile-image" alt="Not Available Image">
+                <div class="card-body">
+                    <div style="text-align: left">
+                        <h5 class="card-title" th:text="${'User Name: ' + userDTO.name}">
+
+                        </h5>
+                        <p class="card-title" th:text="${'User Contact: ' + userDTO.contact}">
+                        </p>
+                        <u><p class="card-title" th:text="${'User Email: ' + userDTO.email}"></p></u>
+                        <u><p class="card-title" th:text="${'User Address: ' + userDTO.address}"></p></u>
+                        <div class="row text-center" style="text-align: center">
+                            <div class="col-md-3">
+                                <a th:href="@{${'/order/get/user/' + userDTO.id}}"
+                                   class="btn flatiron-user btn-primary"
+                                   data-toggle="modal">
+                                    All Orders
+                                </a>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+</body>
+</html>
