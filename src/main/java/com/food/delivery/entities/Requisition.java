@@ -22,6 +22,8 @@ public class Requisition {
 
     private String date;
 
+    private String foodName;
+
     private boolean isPaid;
 
     private boolean isDelivered;

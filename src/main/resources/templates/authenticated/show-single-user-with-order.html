@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Food Ordering System</title>
+</head>
+<body>
+
+<section>
+
+
+    <div class="container">
+        <div class="container col-md-5" style="text-align: center">
+
+            <h1 style="text-align: center">User Details With Orders</h1>
+
+            <div class="card" style="width: 40rem; text-align: center">
+                <img th:src="@{${'/image/' + userDTO.image}}"
+                     class="single-card-img-top profile-image" alt="Not Available Image">
+                <div class="card-body">
+                    <div style="text-align: left">
+                        <h5 class="card-title" th:text="${'User Name: ' + userDTO.name}">
+
+                        </h5>
+                        <p class="card-title" th:text="${'User Contact: ' + userDTO.contact}">
+                        </p>
+                        <u><p class="card-title" th:text="${'User Email: ' + userDTO.email}"></p></u>
+                        <u><p class="card-title" th:text="${'User Address: ' + userDTO.address}"></p></u>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div th:if="${requisitionDTOS.isEmpty()}">
+            <td colspan="3"> Your Requisition's is Empty!!</td>
+        </div>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Requisition Id</th>
+                <th scope="col">Requisition Date</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Food Name</th>
+            </tr>
+            </thead>
+            <tbody class="table-warning">
+            <div th:each="requisitionDTO : ${requisitionDTOS}">
+                <tr>
+                    <td th:text="${requisitionDTO.id}"></td>
+                    <td th:text="${requisitionDTO.date}"></td>
+                    <td th:text="${requisitionDTO.totalPrice}"></td>
+                    <td th:text="${requisitionDTO.foodName}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</section>
+
+</body>
+</html>

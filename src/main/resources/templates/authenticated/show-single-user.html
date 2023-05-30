@@ -15,6 +15,10 @@
 
             <h1 style="text-align: center">Authority Details</h1>
 
+            <div>
+                <p th:text="${message}" style="color: #318043"></p>
+            </div>
+
             <div class="card" style="width: 40rem; text-align: center">
                 <img th:src="@{${'/image/' + userDTO.image}}"
                      class="single-card-img-top profile-image" alt="Not Available Image">
@@ -29,7 +33,7 @@
                         <u><p class="card-title" th:text="${'User Address: ' + userDTO.address}"></p></u>
                         <div class="row text-center" style="text-align: center">
                             <div class="col-md-3">
-                                <a th:href="@{${'/order/get/user/' + userDTO.id}}"
+                                <a th:href="@{${'/order/user/' + userDTO.id}}"
                                    class="btn flatiron-user btn-primary"
                                    data-toggle="modal">
                                     All Orders

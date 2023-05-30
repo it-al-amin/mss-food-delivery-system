@@ -91,6 +91,7 @@ public class UserController {
             model.addAttribute("name", null);
             return "redirect:/auth/login";
         }
+        model.addAttribute("message", "");
         model.addAttribute("userDTO", this.userService.getSingleUserById(userId));
         return "authenticated/show-single-user";
     }
@@ -107,6 +108,7 @@ public class UserController {
             model.addAttribute("name", null);
             return "redirect:/auth/login";
         }
+        model.addAttribute("message", "");
         model.addAttribute("userDTO", this.userService.getSingleUserById(user.getId()));
         return "authenticated/show-single-user";
     }
