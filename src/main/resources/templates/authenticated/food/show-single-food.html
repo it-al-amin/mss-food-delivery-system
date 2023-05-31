@@ -27,6 +27,18 @@
                         </h5>
                         <p class="card-title" th:text="${'User Price: ' + foodDTO.price}"></p>
                         <p class="card-title" th:text="${'User Description: ' + foodDTO.description}"></p>
+                        <hr>
+                        <label for="foodQuantity" class="form-label"><b>Food's Quantity</b></label>
+                        <input
+                                type="number"
+                                id="foodQuantity"
+                                name="foodQuantity"
+                                th:min="1"
+                                th:max="100"
+                                required="required"
+                                class="form-control"
+                        >
+                        <br>
                         <div class="row text-center" style="text-align: center">
                             <div class="col-md-3">
                                 <a th:href="@{${'/buy/' + foodDTO.id}}"
@@ -34,12 +46,12 @@
                                    data-toggle="modal">
                                     Buy Food
                                 </a>
-                               <!-- <a th:href="@{${'/food/edit/' + foodDTO.id}}"
-                                   th:if="${name != null}"
-                                   class="btn flatiron-user btn-success"
-                                   data-toggle="modal">
-                                    Update Food
-                                </a>  -->
+                                <!-- <a th:href="@{${'/food/edit/' + foodDTO.id}}"
+                                    th:if="${name != null}"
+                                    class="btn flatiron-user btn-success"
+                                    data-toggle="modal">
+                                     Update Food
+                                 </a>  -->
                             </div>
                         </div>
                         <hr>
